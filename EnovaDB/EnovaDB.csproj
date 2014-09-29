@@ -36,6 +36,57 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Generator\Analysis.business.xml" />
+    <Content Include="Generator\Biegli.business.xml" />
+    <Content Include="Generator\Business.business.xml" />
+    <Content Include="Generator\Core.business.xml" />
+    <Content Include="Generator\CRM.business.xml" />
+    <Content Include="Generator\CzlonkowieSzkolenia.business.xml" />
+    <Content Include="Generator\Deklaracje.business.xml" />
+    <Content Include="Generator\Delegacje.business.xml" />
+    <Content Include="Generator\EwidencjaVat.business.xml" />
+    <Content Include="Generator\Handel.business.xml" />
+    <Content Include="Generator\HR.business.xml" />
+    <Content Include="Generator\Import.business.xml" />
+    <Content Include="Generator\Kadry.business.xml" />
+    <Content Include="Generator\Kalend.business.xml" />
+    <Content Include="Generator\Kasa.business.xml" />
+    <Content Include="Generator\Ksiega.business.xml" />
+    <Content Include="Generator\Magazyny.business.xml" />
+    <Content Include="Generator\Oceny.business.xml" />
+    <Content Include="Generator\Place.business.xml" />
+    <Content Include="Generator\Produkcja.business.xml" />
+    <Content Include="Generator\Przeszeregowania.business.xml" />
+    <Content Include="Generator\RMK.business.xml" />
+    <Content Include="Generator\Samochodowka.business.xml" />
+    <Content Include="Generator\Snapshots.business.xml" />
+    <Content Include="Generator\Soneta.StudioExt.dll" />
+    <Content Include="Generator\SrodkiTrwale.business.xml" />
+    <Content Include="Generator\Towary.business.xml" />
+    <Content Include="Generator\Waluty.business.xml" />
+    <Content Include="Generator\WebAuthorization.business.xml" />
+    <Content Include="Generator\Windykacja.business.xml" />
+    <Content Include="Generator\Workflow.business.xml" />
+    <Content Include="Generator\Zadania.business.xml" />
+    <Content Include="Soneta.Generator.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Generator\Business.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generator\Business.xsx">
+      <DependentUpon>Business.xsd</DependentUpon>
+    </None>
+    <None Include="Generator\BusinessGenerator.reg" />
+    <None Include="Generator\Config.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generator\Config.xsx">
+      <DependentUpon>Config.xsd</DependentUpon>
+    </None>
+    <None Include="Soneta.Generator.Install.bat" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

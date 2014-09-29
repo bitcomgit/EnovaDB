@@ -13,30 +13,30 @@ using System.Collections;
 using System.ComponentModel;
 using Soneta.Types;
 using Soneta.Business;
-using Soneta.Examples.EnovaDB;
+using Soneta.Examples.EnovaDB.Punktacja;
 
-[assembly: ModuleType("EnovaDB", typeof(Soneta.Examples.EnovaDB.EnovaDBModule), 2, "EnovaDB", 0, VersionNumber=1)]
+[assembly: ModuleType("Punktacja", typeof(Soneta.Examples.EnovaDB.Punktacja.PunktacjaModule), 2, "Punktacja", 0, VersionNumber=1)]
 
-namespace Soneta.Examples.EnovaDB {
+namespace Soneta.Examples.EnovaDB.Punktacja {
 
 	/// <summary>
-	/// Modu³ EnovaDB.
+	/// Modu³ Punktacja.
 	/// </summary>
 	/// <seealso cref="Soneta.Business.Module"/>
 	/// <seealso cref="Soneta.Business.Session"/>
 	[System.CodeDom.Compiler.GeneratedCode("Soneta.Generator", "2")]
-	public partial class EnovaDBModule : Module {
+	public partial class PunktacjaModule : Module {
 
-		public static EnovaDBModule GetInstance(ISessionable session) {
+		public static PunktacjaModule GetInstance(ISessionable session) {
 			if (session == null || session.Session == null) return null;
-			return (EnovaDBModule)session.Session.Modules[typeof(EnovaDBModule)];
+			return (PunktacjaModule)session.Session.Modules[typeof(PunktacjaModule)];
 		}
 
 		/// <summary>
 		/// Standardowy kontruktor modu³u sesji.
 		/// </summary>
 		/// <param name="session">Sesja w której jest tworzony ten modu³.</param>
-		public EnovaDBModule(Session session) : base(session, "EnovaDB") {
+		public PunktacjaModule(Session session) : base(session, "Punktacja") {
 			Initialize();
 		}
 

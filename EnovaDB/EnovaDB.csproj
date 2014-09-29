@@ -33,6 +33,11 @@
     <Reference Include="Soneta.Business">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Soneta.Core, Version=10.5.5385.14459, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL" />
+    <Reference Include="Soneta.Handel">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Soneta.Kasa, Version=10.5.5385.14462, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL" />
     <Reference Include="Soneta.Types">
       <Private>False</Private>
     </Reference>
@@ -46,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Punktacja.business.xml</DependentUpon>
     </Compile>
+    <Compile Include="Punktacja\Punkt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Generator\Analysis.business.xml" />
@@ -103,6 +109,7 @@
     </None>
     <None Include="Soneta.Generator.Install.bat" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

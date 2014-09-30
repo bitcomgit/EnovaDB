@@ -55,7 +55,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Punktacja.business.xml</DependentUpon>
     </Compile>
-    <Compile Include="Punktacja\Punkt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Generator\Analysis.business.xml" />

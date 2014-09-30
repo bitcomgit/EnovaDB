@@ -33,11 +33,15 @@
     <Reference Include="Soneta.Business">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Soneta.Core, Version=10.5.5385.14459, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL" />
+    <Reference Include="Soneta.Core">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Soneta.Handel">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Soneta.Kasa, Version=10.5.5385.14462, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL" />
+    <Reference Include="Soneta.Kasa">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Soneta.Types">
       <Private>False</Private>
     </Reference>

@@ -86,7 +86,6 @@
     <Content Include="Generator\RMK.business.xml" />
     <Content Include="Generator\Samochodowka.business.xml" />
     <Content Include="Generator\Snapshots.business.xml" />
-    <Content Include="Generator\Soneta.StudioExt.dll" />
     <Content Include="Generator\SrodkiTrwale.business.xml" />
     <Content Include="Generator\Towary.business.xml" />
     <Content Include="Generator\Waluty.business.xml" />
@@ -103,14 +102,12 @@
     <None Include="Generator\Business.xsx">
       <DependentUpon>Business.xsd</DependentUpon>
     </None>
-    <None Include="Generator\BusinessGenerator.reg" />
     <None Include="Generator\Config.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Generator\Config.xsx">
       <DependentUpon>Config.xsd</DependentUpon>
     </None>
-    <None Include="Soneta.Generator.Install.bat" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

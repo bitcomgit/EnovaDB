@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0"?>
 <!--
 Plik ten zawiera opis zakłdaki formularza, na której odbywać się będzie edycja wartości obiektu
-Punkt zawierającego przypisane do dokumentu handlowego punkty. Formularz ten będzie wywoływany z poziomu
-listy punktów znajdujących się na zakładce dokumentu handlowego.
-Do budowy formularza wykorzystano property obiektu biznesowego Punkt, które zostały podłączone do kontrolek
-formularza.
+DefinicjaPunktu zawierającego informacje o definicji punktu. Formularz ten będzie wywoływany z poziomu
+listy definicji punktów w konfiguracji (Handel/Definicje punktów).
+Do budowy formularza wykorzystano property obiektu biznesowego DefinicjaPunktu, które zostały podłączone do kontrolek formularza.
 
 Rejestracja zakładki odbywa się poprzez nadanie odpowiedniego prefiksu w nazwie pliku. Prefiksem tym jest nazwa typu, na który
 zakładka ma być zarejestrowana.

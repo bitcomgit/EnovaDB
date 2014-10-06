@@ -10,9 +10,11 @@
 // Wszystkie obiekty biznesowe zostały umieszczone w jednym namespace, którego nazwa została również 
 // umieszczona w pliku *.business.xml (module/@namespace).
 //
+
+using System;
+
 namespace Soneta.Examples.EnovaDB.Punktacja
 {
-
     //
     // Nazwa klasy kolekcji obiektów biznesowych brana jest z nazwy elementu table znajdującego się w 
     // *.business.xml (atrybut table/@tablename).
@@ -23,5 +25,24 @@ namespace Soneta.Examples.EnovaDB.Punktacja
     //
     public class DefPunkty : PunktacjaModule.DefinicjaPunktuTable
     {
+        //
+        // Identyfikatora GUID, który został użyty w pliku Punktu.dbinit.xml
+        //
+        public static readonly Guid StandardowaGuid = new Guid("72BF1FB2-B395-49c7-84D5-E0AFA27AE52B");
+
+        //
+        // Property zwracające standardową definicję przypisywaną dla każdego punktu.
+        // Zapis odczytywany jest na podstawie identyfikatora GUID, który został użyty w pliku Punktu.dbinit.xml
+        //
+        public DefinicjaPunktu Standardowa
+        {
+            get
+            {
+                //
+                // Każda tabela guided="Root" posiada indekser pozwalający odczytać 
+                // obiekt biznesowy na podstawie podanego guid.
+                return this[StandardowaGuid];
+            }
+        }
     }
 }

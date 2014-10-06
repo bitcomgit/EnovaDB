@@ -151,7 +151,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 		}
 
 		[RecordType(typeof(DefinicjaPunktuRecord))]
-		[Caption("Definicje dodatkowych punktów")]
+		[Caption("Definicje dodatkowych punkt¢w")]
 		public abstract partial class DefinicjaPunktuRow : GuidedRow {
 
 			private DefinicjaPunktuRecord record = null;
@@ -164,8 +164,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			protected DefinicjaPunktuRow() : base(true) {
 			}
 
-			[Description("Pe³na nazwa definicji punktu.")]
-			[Category("Ogólne")]
+			[Description("Peˆna nazwa definicji punktu.")]
+			[Category("Og¢lne")]
 			[MaxLength(30)]
 			[Required]
 			public string Nazwa {
@@ -194,8 +194,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				return IsReadOnly() || !AllowsEditImportantFields("Nazwa");
 			}
 
-			[Description("Mno¿nik punktów, który s³u¿y do wyliczenia iloœci punktów.")]
-			[Caption("Mno¿nik")]
+			[Description("Mno¾nik punkt¢w, kt¢ry sˆu¾y do wyliczenia ilo˜ci punkt¢w.")]
+			[Caption("Mno¾nik")]
 			public int Mnoznik {
 				get {
 					if (record==null) GetRecord();
@@ -534,8 +534,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				record.Dokument = dokument;
 			}
 
-			[Description("Okreœla rodzaj przypisanego punktu.")]
-			[Category("Ogólne")]
+			[Description("Okre˜la rodzaj przypisanego punktu.")]
+			[Category("Og¢lne")]
 			[Required]
 			public DefinicjaPunktu Definicja {
 				get {
@@ -560,8 +560,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				}
 			}
 
-			[Description("Dokument handlowy, któremu przypisany jest dany punkt.")]
-			[Category("Ogólne")]
+			[Description("Dokument handlowy, kt¢remu przypisany jest dany punkt.")]
+			[Category("Og¢lne")]
 			[Required]
 			public DokumentHandlowy Dokument {
 				get {
@@ -573,7 +573,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				}
 			}
 
-			[Description("Iloœæ przypisanych punktów.")]
+			[Description("Ilo˜† przypisanych punkt¢w.")]
 			public int Liczba {
 				get {
 					if (record==null) GetRecord();

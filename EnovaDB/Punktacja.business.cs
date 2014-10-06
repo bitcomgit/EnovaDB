@@ -83,6 +83,32 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			protected DefinicjaPunktuTable() : base(true, false) {
 			}
 
+			public class WgNazwyKey : Key {
+				protected override object [] GetData(Row row, Record rec) {
+					return new object[] {
+						((DefinicjaPunktuRecord)rec).Nazwa.TrimEnd()};
+				}
+				public WgNazwyKey(DefinicjaPunktuTable table) {
+					Table = table;
+					Name = "WgNazwy";
+					Unique = true;
+					InitFields("Nazwa");
+					table.Session.Keys.Add(this);
+				}
+
+				public DefinicjaPunktu this[string nazwa] {
+					get {
+						return (DefinicjaPunktu)Find(nazwa);
+					}
+				}
+			}
+
+			WgNazwyKey keyWgNazwy;
+
+			public WgNazwyKey WgNazwy {
+				get { return keyWgNazwy; } 
+			}
+
 
 			protected override void LoadChildRelations() {
 			}
@@ -113,6 +139,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 
 			protected override void Adding(Module module) {
 				base.Adding(module);
+				keyWgNazwy = new WgNazwyKey(this);
+				SetPrimaryKey(keyWgNazwy);
 			}
 
 			protected override Record CreateRecord() {
@@ -182,7 +210,10 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 					if (!AllowsEditImportantFields("Nazwa")) throw new ColReadOnlyException(this, "Nazwa");
 					GetEdit(record==null, false);
 					record.Nazwa = value;
-					if (State==RowState.Modified) Session.Verifiers.Add(new ImportantColumnVerifier<DefinicjaPunktu>((DefinicjaPunktu)this, "Nazwa"));
+					if (State!=RowState.Detached) {
+						Table.WgNazwy.ResyncSet(this);
+						if (State==RowState.Modified) Session.Verifiers.Add(new ImportantColumnVerifier<DefinicjaPunktu>((DefinicjaPunktu)this, "Nazwa"));
+					}
 					if (DefinicjaPunktuSchema.NazwaAfterEdit!=null)
 						DefinicjaPunktuSchema.NazwaAfterEdit((DefinicjaPunktu)this);
 				}

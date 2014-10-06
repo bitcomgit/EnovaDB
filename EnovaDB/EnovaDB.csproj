@@ -98,7 +98,9 @@
     <Content Include="Generator\Windykacja.business.xml" />
     <Content Include="Generator\Workflow.business.xml" />
     <Content Include="Generator\Zadania.business.xml" />
+    <EmbeddedResource Include="Punktacja.UI\Config.DefPunkty.pageform.xml" />
     <EmbeddedResource Include="Punktacja.dbinit.xml" />
+    <EmbeddedResource Include="Punktacja.UI\DefinicjaPunktu.DefinicjaPunktu.pageform.xml" />
     <Content Include="Soneta.Generator.exe" />
   </ItemGroup>
   <ItemGroup>

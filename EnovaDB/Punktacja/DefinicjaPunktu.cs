@@ -32,5 +32,20 @@ namespace Soneta.Examples.EnovaDB.Punktacja
     //
     public class DefinicjaPunktu : PunktacjaModule.DefinicjaPunktuRow
     {
+        //
+        // Tutaj została określona metoda wyliczania napisu reprezentującego dany obiekt biznesowy.
+        // Dla definicji napis ten jest po prostu jego nazwą.
+        // Metoda ta będzie wykorzystywana wszędzie tam, gdzie trzeba będzie podać obólną informację 
+        // o danym obiekcie biznesowym, np w komunikatach o błędach.
+        //
+        public override string ToString()
+        {
+            //
+            // Odwołanie do property Nazwa, powoduje odczytanie nazwy z bazy danych.
+            // Wszystkie odwołania do property biznesowych odwołujących się do pól bazy danych są bardzo
+            // szybkie i nie wymagają jakiś szczególnych optymalizacji. Odczyty te dokonywane są z bufora.
+            //
+            return Nazwa;
+        }
     }
 }

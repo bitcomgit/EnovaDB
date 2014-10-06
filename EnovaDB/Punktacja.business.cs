@@ -83,6 +83,32 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			protected DefinicjaPunktuTable() : base(true, false) {
 			}
 
+			public class WgNazwyKey : Key {
+				protected override object [] GetData(Row row, Record rec) {
+					return new object[] {
+						((DefinicjaPunktuRecord)rec).Nazwa.TrimEnd()};
+				}
+				public WgNazwyKey(DefinicjaPunktuTable table) {
+					Table = table;
+					Name = "WgNazwy";
+					Unique = true;
+					InitFields("Nazwa");
+					table.Session.Keys.Add(this);
+				}
+
+				public DefinicjaPunktu this[string nazwa] {
+					get {
+						return (DefinicjaPunktu)Find(nazwa);
+					}
+				}
+			}
+
+			WgNazwyKey keyWgNazwy;
+
+			public WgNazwyKey WgNazwy {
+				get { return keyWgNazwy; } 
+			}
+
 
 			protected override void LoadChildRelations() {
 			}
@@ -113,6 +139,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 
 			protected override void Adding(Module module) {
 				base.Adding(module);
+				keyWgNazwy = new WgNazwyKey(this);
+				SetPrimaryKey(keyWgNazwy);
 			}
 
 			protected override Record CreateRecord() {
@@ -151,7 +179,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 		}
 
 		[RecordType(typeof(DefinicjaPunktuRecord))]
-		[Caption("Definicje dodatkowych punkt¢w")]
+		[Caption("Definicje dodatkowych punktów")]
 		public abstract partial class DefinicjaPunktuRow : GuidedRow {
 
 			private DefinicjaPunktuRecord record = null;
@@ -164,8 +192,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			protected DefinicjaPunktuRow() : base(true) {
 			}
 
-			[Description("Peˆna nazwa definicji punktu.")]
-			[Category("Og¢lne")]
+			[Description("Pe³na nazwa definicji punktu.")]
+			[Category("Ogólne")]
 			[MaxLength(30)]
 			[Required]
 			public string Nazwa {
@@ -182,7 +210,10 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 					if (!AllowsEditImportantFields("Nazwa")) throw new ColReadOnlyException(this, "Nazwa");
 					GetEdit(record==null, false);
 					record.Nazwa = value;
-					if (State==RowState.Modified) Session.Verifiers.Add(new ImportantColumnVerifier<DefinicjaPunktu>((DefinicjaPunktu)this, "Nazwa"));
+					if (State!=RowState.Detached) {
+						Table.WgNazwy.ResyncSet(this);
+						if (State==RowState.Modified) Session.Verifiers.Add(new ImportantColumnVerifier<DefinicjaPunktu>((DefinicjaPunktu)this, "Nazwa"));
+					}
 					if (DefinicjaPunktuSchema.NazwaAfterEdit!=null)
 						DefinicjaPunktuSchema.NazwaAfterEdit((DefinicjaPunktu)this);
 				}
@@ -194,8 +225,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				return IsReadOnly() || !AllowsEditImportantFields("Nazwa");
 			}
 
-			[Description("Mno¾nik punkt¢w, kt¢ry sˆu¾y do wyliczenia ilo˜ci punkt¢w.")]
-			[Caption("Mno¾nik")]
+			[Description("Mno¿nik punktów, który s³u¿y do wyliczenia iloœci punktów.")]
+			[Caption("Mno¿nik")]
 			public int Mnoznik {
 				get {
 					if (record==null) GetRecord();
@@ -534,8 +565,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				record.Dokument = dokument;
 			}
 
-			[Description("Okre˜la rodzaj przypisanego punktu.")]
-			[Category("Og¢lne")]
+			[Description("Okreœla rodzaj przypisanego punktu.")]
+			[Category("Ogólne")]
 			[Required]
 			public DefinicjaPunktu Definicja {
 				get {
@@ -560,8 +591,8 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				}
 			}
 
-			[Description("Dokument handlowy, kt¢remu przypisany jest dany punkt.")]
-			[Category("Og¢lne")]
+			[Description("Dokument handlowy, któremu przypisany jest dany punkt.")]
+			[Category("Ogólne")]
 			[Required]
 			public DokumentHandlowy Dokument {
 				get {
@@ -573,7 +604,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				}
 			}
 
-			[Description("Ilo˜† przypisanych punkt¢w.")]
+			[Description("Iloœæ przypisanych punktów.")]
 			public int Liczba {
 				get {
 					if (record==null) GetRecord();

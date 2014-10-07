@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Punktacja\DefinicjaPunktu.cs" />
     <Compile Include="Punktacja\DefPunkty.cs" />
+    <Compile Include="Punktacja\PrzeliczaniePunktowHelper.cs" />
     <Compile Include="Punktacja\Punkt.cs" />
     <Compile Include="Punktacja\Punkty.cs" />
     <Compile Include="Punktacja\PunktyDokumentuWorker.cs" />

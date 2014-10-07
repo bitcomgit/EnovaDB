@@ -1,4 +1,6 @@
-﻿using Soneta.Business;
+﻿using System.ComponentModel;
+using System.Globalization;
+using Soneta.Business;
 using Soneta.Examples.EnovaDB.Punktacja;
 using Soneta.Handel;
 
@@ -56,6 +58,71 @@ namespace Soneta.Examples.EnovaDB.Punktacja
         public Punkt(DokumentHandlowy dokument)
             : base(dokument)
         {
+        }
+
+        // Tutaj została określona metoda wyliczania napisu reprezentującego dany obiekt biznesowy.
+        // Dla obiektu punktu jest to nazwa definicji i liczba przypisanych punktów.
+        // Metoda ta będzie wykorzystywana wszędzie tam, gdzie trzeba będzie podać obólną informację 
+        // o danym obiekcie biznesowym, np w komunikatach o błędach.
+        //
+        public override string ToString()
+        {
+            //
+            // Pomimo, że wartość pola Definicja jest required, to należy sprawdzić czy nie jest null. 
+            // Ponieważ pole nie jest readonly oznacza to, że może być jeszcze nie zainicjowane.
+            // Gdyby odwołanie było zrobione do pola Dokument, weryfikacja nie była by potrzebna, gdyż
+            // o pole jest readonly i required, czyli jest inicjowane zawsze w konstruktorze obiektu.
+            //
+            var liczba = Liczba.ToString(CultureInfo.InvariantCulture);
+
+            return Definicja != null 
+                ? Definicja + " " + liczba 
+                : liczba;
+        }
+
+        //
+        // Metoda wywoływana po dodanio obiektu biznesowego do tabeli w sesji. Jest to miejsce, gdzie można
+        // robić wszelkiego rodzaju inicjację obiektu, gdy potrzeba jest nam obiekt session. Czyli ogólnie
+        // dostęp do innych obiektów biznesowych.
+        //
+        // Metoda inicjuje obiekt punktu standardową definicją punktu.
+        //
+        protected override void OnAdded()
+        {
+            //
+            // Na początku konieczne jest wywołanie metody bazowej OnAdded()
+            //
+            base.OnAdded();
+            //
+            // Zainicjowanie pola Definicja wartością standardową.
+            // Z modułu odczytywany jest obiekt tabeli definicji punktów, który zawiera property
+            // Standardowy zwracające standardową definicję punktu.
+            // Operację tę można wykonać dopiero w metodzie OnAdded(), ponieważ wcześniej
+            // obiekt nie jest przypisany do sesji i odwołanie do property Module zakończyło by się błędem.
+            //
+            Definicja = Module.DefPunkty.Standardowa;
+        }
+
+        //
+        // Property wyliczeniowe dodane do obiektu biznesowego. Jego zadaniem jest policzenie faktycznej ilość
+        // punktów wynikających z danego zapisu. Chodzi o to, że ilość wprowadzonych punktów musi być 
+        // pomnożona przez mnożnik wynikający z definicji.
+        //
+        [Description("Należna liczba punktów po uwzględnieniu mnożnika.")]
+        public int LiczbaNależna
+        {
+            get
+            {
+                //
+                // Pomimo, że wartość pola Definicja jest required, to należy sprawdzić czy nie jest null. 
+                // Ponieważ pole nie jest readonly oznacza to, że może być jeszcze nie zainicjowane.
+                //
+                if (Definicja == null) return 0;
+                //
+                // Wyliczenie wartość przez pomnożenie odpowiednich liczb.
+                //
+                return Liczba * Definicja.Mnoznik;
+            }
         }
     }
 }

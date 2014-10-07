@@ -132,6 +132,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja
                 base.Definicja = value;
                 // Ustawienie definicji powoduje przliczenie cache'owanej liczby należnej
                 PrzeliczLiczbaNalezna1();
+                PrzeliczLiczbaNalezna2();
             }
         }
 
@@ -143,12 +144,18 @@ namespace Soneta.Examples.EnovaDB.Punktacja
                 base.Liczba = value;
                 // Ustawienie liczby powoduje przliczenie cache'owanej liczby należnej
                 PrzeliczLiczbaNalezna1();
+                PrzeliczLiczbaNalezna2();
             }
         }
 
         internal void PrzeliczLiczbaNalezna1()
         {
             baseLiczbaNalezna1 = LiczbaNależna;
+        }
+
+        internal void PrzeliczLiczbaNalezna2()
+        {
+            baseLiczbaNalezna2 = LiczbaNależna;
         }
     }
 }

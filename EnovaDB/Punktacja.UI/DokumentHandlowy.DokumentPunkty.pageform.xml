@@ -25,6 +25,7 @@ Plik należy dodać do projektu jako Embedded Resource.
         <Field CaptionHtml="Definicja" Width="23" EditValue="{Definicja}" Footer="None" />
         <Field CaptionHtml="Liczba" Width="9" EditValue="{Liczba}" Footer="None" />
         <Field CaptionHtml="Liczba należna" Width="12" EditValue="{LiczbaNależna}" Footer="None" />
+        <Field CaptionHtml="Liczba należna 1" Width="12" EditValue="{LiczbaNalezna1}" Footer="None" />
       </Grid>
       <Row>
         <Field CaptionHtml="Suma punktów na dokumencie" Width="10" EditValue="{Workers.PunktyDokumentu.SumaPunktów}" />

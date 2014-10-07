@@ -16,7 +16,7 @@ using Soneta.Business;
 using Soneta.Handel;
 using Soneta.Examples.EnovaDB.Punktacja;
 
-[assembly: ModuleType("Punktacja", typeof(Soneta.Examples.EnovaDB.Punktacja.PunktacjaModule), 2, "Punktacja", 2, VersionNumber=2)]
+[assembly: ModuleType("Punktacja", typeof(Soneta.Examples.EnovaDB.Punktacja.PunktacjaModule), 2, "Punktacja", 2, VersionNumber=3)]
 [assembly: SimpleRight(typeof(DefinicjaPunktu), "Edycja pola Nazwa", Description="Zezwala na edycjê pola Nazwa zapisu.")]
 
 namespace Soneta.Examples.EnovaDB.Punktacja {
@@ -535,11 +535,13 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				names.Append(divider); names.Append("Definicja");
 				names.Append(divider); names.Append("Dokument");
 				names.Append(divider); names.Append("Liczba");
+				names.Append(divider); names.Append("LiczbaNalezna1");
 			}
 
 			protected override sealed void PrepareTypes(System.Collections.Generic.List<Type> types) {
 				types.Add(typeof(Row));
 				types.Add(typeof(Row));
+				types.Add(typeof(int));
 				types.Add(typeof(int));
 			}
 
@@ -568,7 +570,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			[Description("Okreœla rodzaj przypisanego punktu.")]
 			[Category("Ogólne")]
 			[Required]
-			public DefinicjaPunktu Definicja {
+			public virtual DefinicjaPunktu Definicja {
 				get {
 					if (record==null) GetRecord();
 					if (record.Definicja==null) return null;
@@ -605,7 +607,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			}
 
 			[Description("Iloœæ przypisanych punktów.")]
-			public int Liczba {
+			public virtual int Liczba {
 				get {
 					if (record==null) GetRecord();
 					return record.Liczba;
@@ -617,6 +619,25 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 					record.Liczba = value;
 					if (PunktSchema.LiczbaAfterEdit!=null)
 						PunktSchema.LiczbaAfterEdit((Punkt)this);
+				}
+			}
+
+			[Description("Iloœæ nale¿na przypisanych punktów (konwersja IDatabaseInitializer).")]
+			public int LiczbaNalezna1 {
+				get {
+					if (record==null) GetRecord();
+					return record.LiczbaNalezna1;
+				}
+			}
+
+			protected int baseLiczbaNalezna1 {
+				set {
+					if (PunktSchema.LiczbaNalezna1BeforeEdit!=null)
+						PunktSchema.LiczbaNalezna1BeforeEdit((Punkt)this, ref value);
+					GetEdit(record==null, false);
+					record.LiczbaNalezna1 = value;
+					if (PunktSchema.LiczbaNalezna1AfterEdit!=null)
+						PunktSchema.LiczbaNalezna1AfterEdit((Punkt)this);
 				}
 			}
 
@@ -715,6 +736,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			[ParentTable("DokumentHandlowy")]
 			public IRow Dokument;
 			public int Liczba;
+			public int LiczbaNalezna1;
 
 			public override Record Clone() {
 				PunktRecord rec = (PunktRecord)MemberwiseClone();
@@ -726,6 +748,7 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 				Definicja = creator.Load_Row(1, "DefPunkty");
 				Dokument = creator.Load_Row(2, "DokHandlowe");
 				Liczba = creator.Load_int(3);
+				LiczbaNalezna1 = creator.Load_int(4);
 			}
 		}
 
@@ -749,6 +772,16 @@ namespace Soneta.Examples.EnovaDB.Punktacja {
 			internal static RowDelegate<PunktRow> LiczbaAfterEdit;
 			public static void AddLiczbaAfterEdit(RowDelegate<PunktRow> value) {
 				LiczbaAfterEdit = (RowDelegate<PunktRow>)Delegate.Combine(LiczbaAfterEdit, value);
+			}
+
+			internal static RowDelegate<PunktRow, int> LiczbaNalezna1BeforeEdit;
+			public static void AddLiczbaNalezna1BeforeEdit(RowDelegate<PunktRow, int> value) {
+				LiczbaNalezna1BeforeEdit = (RowDelegate<PunktRow, int>)Delegate.Combine(LiczbaNalezna1BeforeEdit, value);
+			}
+
+			internal static RowDelegate<PunktRow> LiczbaNalezna1AfterEdit;
+			public static void AddLiczbaNalezna1AfterEdit(RowDelegate<PunktRow> value) {
+				LiczbaNalezna1AfterEdit = (RowDelegate<PunktRow>)Delegate.Combine(LiczbaNalezna1AfterEdit, value);
 			}
 
 			internal static RowDelegate<PunktRow> OnLoaded;

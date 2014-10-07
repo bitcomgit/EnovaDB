@@ -124,5 +124,31 @@ namespace Soneta.Examples.EnovaDB.Punktacja
                 return Liczba * Definicja.Mnoznik;
             }
         }
+
+        public override DefinicjaPunktu Definicja {
+            get { return base.Definicja; }
+            set
+            {
+                base.Definicja = value;
+                // Ustawienie definicji powoduje przliczenie cache'owanej liczby należnej
+                PrzeliczLiczbaNalezna1();
+            }
+        }
+
+        public override int Liczba
+        {
+            get { return base.Liczba; }
+            set
+            {
+                base.Liczba = value;
+                // Ustawienie liczby powoduje przliczenie cache'owanej liczby należnej
+                PrzeliczLiczbaNalezna1();
+            }
+        }
+
+        internal void PrzeliczLiczbaNalezna1()
+        {
+            baseLiczbaNalezna1 = LiczbaNależna;
+        }
     }
 }

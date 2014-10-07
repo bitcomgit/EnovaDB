@@ -60,6 +60,7 @@
     <Compile Include="Punktacja\DefPunkty.cs" />
     <Compile Include="Punktacja\PrzeliczaniePunktowHelper.cs" />
     <Compile Include="Punktacja\Punkt.cs" />
+    <Compile Include="Punktacja\PunktDatabaseInitializer3.cs" />
     <Compile Include="Punktacja\Punkty.cs" />
     <Compile Include="Punktacja\PunktyDokumentuWorker.cs" />
   </ItemGroup>

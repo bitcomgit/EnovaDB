@@ -102,6 +102,8 @@
     <EmbeddedResource Include="Punktacja.UI\Config.DefPunkty.pageform.xml" />
     <EmbeddedResource Include="Punktacja.dbinit.xml" />
     <EmbeddedResource Include="Punktacja.UI\DefinicjaPunktu.DefinicjaPunktu.pageform.xml" />
+    <EmbeddedResource Include="Punktacja.UI\Punkt.Punkt.pageform.xml" />
+    <EmbeddedResource Include="Punktacja.UI\DokumentHandlowy.DokumentPunkty.pageform.xml" />
     <Content Include="Soneta.Generator.exe" />
   </ItemGroup>
   <ItemGroup>

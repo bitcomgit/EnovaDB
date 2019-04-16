@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+      <SonetaPackageVersion>1905.0.0-alfa-0416-g07090d5327</SonetaPackageVersion>
+      <ExtensionTargetFramework>net46</ExtensionTargetFramework>
+      <ExtensionOutput>$(ProgramFiles)\Common Files\Soneta\Assemblies\</ExtensionOutput>
+  </PropertyGroup>
+</Project>

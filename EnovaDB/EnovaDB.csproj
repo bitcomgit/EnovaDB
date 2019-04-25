@@ -3,8 +3,4 @@
   <PropertyGroup>
     <TargetFramework>$(ExtensionTargetFramework)</TargetFramework>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Soneta.Products.Modules" Version="$(SonetaPackageVersion)" 
-      IncludeAssets="compile"/>
-  </ItemGroup>
 </Project>
